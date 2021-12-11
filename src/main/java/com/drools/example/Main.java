@@ -23,6 +23,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        primaryStage.setTitle("Electronic Music for People Who Don't Like Electronic Music");
+
+
         session.setGlobal("primaryStage", primaryStage);
         session.fireAllRules();
 
