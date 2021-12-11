@@ -74,7 +74,6 @@ then
 	
 	
     Alert alerts = new Alert(Alert.AlertType.NONE, "", ButtonType.CLOSE );
-     
 	DialogPane dialogPane = alerts.getDialogPane();
     GridPane grid = new GridPane();
     
@@ -85,7 +84,6 @@ then
     topLabel.setMinHeight(80.0);
     topLabel.setFont(new Font("Arial", 20));
     grid.add(topLabel, 0,0);
-    
     
     StackPane stackPane = new StackPane(imageV);
     stackPane.setMinWidth(400);
@@ -101,13 +99,8 @@ then
     grid.add(bottomLabel, 0,2);
 
     dialogPane.setHeader(grid);
-	//dialogPane.setGraphic(null);
-	 //alerts.setHeaderText("Your choice:\n" + a.getAlbum().getFullName());
-     alerts.showAndWait();
+    alerts.showAndWait();
      
-	
-    // metoda wykrywajaca koniec programu - na razie wyswietla puste okienko
-    //primaryStage.show();
 end
 
 rule "Kanye West - 808 & Heartbreak no answer"
