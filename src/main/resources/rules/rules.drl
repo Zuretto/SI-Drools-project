@@ -8,9 +8,14 @@ import javafx.scene.image.ImageView
 import org.kie.api.runtime.KieRuntime
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
-import com.drools.example.AlbumAnswer
+import com.sample.AlbumAnswer
 import javafx.scene.control.DialogPane
-
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane
+import javafx.scene.control.Label
+import javafx.scene.layout.GridPane
+import javafx.geometry.Pos
+import javafx.scene.text.Font
 
 function ImageView loadImageView(String path) {
     FileInputStream input = new FileInputStream(path);
@@ -62,8 +67,47 @@ rule "Album Answer yes"
 when
     a  : AlbumAnswer( ans.equals("Yes") )
 then
+
+	FileInputStream albumPath = new FileInputStream(a.getAlbum().getPathName());
+    Image img = new Image(albumPath);
+    ImageView imageV = new ImageView(img);
+	
+	
+    Alert alerts = new Alert(Alert.AlertType.NONE, "", ButtonType.CLOSE );
+     
+	DialogPane dialogPane = alerts.getDialogPane();
+    GridPane grid = new GridPane();
+    
+    Label topLabel = new Label("Your choice:");
+    topLabel.setAlignment(Pos.CENTER);
+    topLabel.setMaxWidth(Double.MAX_VALUE);
+    topLabel.setMaxHeight(Double.MAX_VALUE);
+    topLabel.setMinHeight(80.0);
+    topLabel.setFont(new Font("Arial", 20));
+    grid.add(topLabel, 0,0);
+    
+    
+    StackPane stackPane = new StackPane(imageV);
+    stackPane.setMinWidth(400);
+    stackPane.setAlignment(Pos.CENTER);
+    grid.add(stackPane, 0,1);
+
+    Label bottomLabel = new Label(a.getAlbum().getFullName());
+    bottomLabel.setAlignment(Pos.CENTER);
+    bottomLabel.setMaxWidth(Double.MAX_VALUE);
+    bottomLabel.setMaxHeight(Double.MAX_VALUE);
+    bottomLabel.setFont(new Font("Arial", 20));
+    bottomLabel.setMinHeight(80.0);
+    grid.add(bottomLabel, 0,2);
+
+    dialogPane.setHeader(grid);
+	//dialogPane.setGraphic(null);
+	 //alerts.setHeaderText("Your choice:\n" + a.getAlbum().getFullName());
+     alerts.showAndWait();
+     
+	
     // metoda wykrywajaca koniec programu - na razie wyswietla puste okienko
-    primaryStage.show();
+    //primaryStage.show();
 end
 
 rule "Kanye West - 808 & Heartbreak no answer"
@@ -73,8 +117,6 @@ then
     // utworz alert z jego odpowiedziami
     ButtonType realRapMusic = new ButtonType("Come on, I want REAL rap music");
     ButtonType giveMeSomeHipHopBeats = new ButtonType("Give me some nice hip-hop beats");
-
-
 
     Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(),
              realRapMusic, giveMeSomeHipHopBeats);
@@ -89,8 +131,6 @@ then
     insert(answer);
 
 end
-
-
 
 
 declare enum Album
