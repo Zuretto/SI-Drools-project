@@ -9,13 +9,31 @@ import org.kie.api.runtime.KieRuntime
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 import com.drools.example.AlbumAnswer
-import javafx.scene.control.DialogPane;
+import javafx.scene.control.DialogPane
 
 
 function ImageView loadImageView(String path) {
     FileInputStream input = new FileInputStream(path);
     Image image = new Image(input);
     return new ImageView(image);
+}
+
+function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
+
+    FileInputStream input = new FileInputStream(album.getPathName());
+    Image image = new Image(input);
+    ImageView imageView = new ImageView(image);
+
+    Alert alert = new Alert(Alert.AlertType.NONE, album.getFullName(),
+     ButtonType.YES, ButtonType.NO);
+     alert.setGraphic(imageView);
+
+     alert.showAndWait();
+
+     AlbumAnswer albumAnswer = new AlbumAnswer();
+     albumAnswer.setAlbum(album);
+     albumAnswer.setAns(alert.getResult().getText());
+     return albumAnswer;
 }
 
 declare QuestionAnswer
@@ -35,20 +53,8 @@ when
 
 then
 
-        Album album = Album.KANYE_WEST_808_AND_HEARTBREAK;
-
-        ImageView imageView = loadImageView(album.getPathName());
-
-        Alert alert = new Alert(Alert.AlertType.NONE, album.getFullName(),
-         ButtonType.YES, ButtonType.NO);
-        alert.setGraphic(imageView);
-
-        alert.showAndWait();
-
-        AlbumAnswer albumAnswer = new AlbumAnswer();
-        albumAnswer.setAlbum(album);
-        albumAnswer.setAns(alert.getResult().getText());
-        insert( albumAnswer );
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KANYE_WEST_808_AND_HEARTBREAK);
+    insert( albumAnswer );
 
 end
 
@@ -68,8 +74,13 @@ then
     ButtonType realRapMusic = new ButtonType("Come on, I want REAL rap music");
     ButtonType giveMeSomeHipHopBeats = new ButtonType("Give me some nice hip-hop beats");
 
+
+
     Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(),
              realRapMusic, giveMeSomeHipHopBeats);
+
+    ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
+    alert.setGraphic(imageView);
 
     alert.showAndWait();
     QuestionAnswer answer = new QuestionAnswer();
@@ -83,7 +94,7 @@ end
 
 
 declare enum Album
-   KANYE_WEST_808_AND_HEARTBREAK("Kanye West - 808s & Heartbreak", "src/main/resources/images/808s.png");
+   KANYE_WEST_808_AND_HEARTBREAK("Kanye West - 808s & Heartbreak", "src/main/resources/images/Kanye West - 808s & Heartbreak.jpg");
 
    fullName : String
    pathName : String
