@@ -14,7 +14,7 @@ public class Main extends Application {
     static KieSession session;
 
     public static void main(String[] args) {
-        executeHelloWorldRules();
+        initializeKieSession();
 
         Application.launch(args);
     }
@@ -31,7 +31,7 @@ public class Main extends Application {
 
     }
 
-    public static void executeHelloWorldRules() {
+    public static void initializeKieSession() {
         KieServices ks = KieServices.Factory.get();
         BasicConfigurator.configure();
         Logger.getLogger(Main.class).setLevel(Level.OFF);
