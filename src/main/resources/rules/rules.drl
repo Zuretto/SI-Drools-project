@@ -38,7 +38,7 @@ when
 
 then
 
-    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KANYE_WEST_808_AND_HEARTBREAK);
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KANYE_WEST_808S_HEARTBREAK);
     insert( albumAnswer );
 
 end
@@ -85,7 +85,7 @@ end
 
 rule "Kanye West - 808 & Heartbreak no answer"
 when
-    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.KANYE_WEST_808_AND_HEARTBREAK )
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.KANYE_WEST_808S_HEARTBREAK )
 then
 
     QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
@@ -109,8 +109,52 @@ end
 
 
 declare enum Album
-   KANYE_WEST_808_AND_HEARTBREAK("Kanye West - 808s & Heartbreak", "src/main/resources/images/Kanye West - 808s & Heartbreak.jpg"),
-   GIRL_TALK_FEED_THE_ANIMALS("Girl Talk - Feed The Animals", "src/main/resources/images/Girl Talk - Feed The Animals.jpg")
+   APHEX_TWIN_DRUKQS("Aphex Twin - Drukqs", "src/main/resources/images/Aphex Twin - Drukqs.jpg"),
+   APHEX_TWIN_SELECTED_AMBIENT_WORKS("Aphex Twin - Selected Ambient Works", "src/main/resources/images/Aphex Twin - Selected Ambient Works.jpg"),
+   AUTECHRE_AMBER("Autechre - Amber", "src/main/resources/images/Autechre - Amber.jpg"),
+   BOARDS_OF_CANADA_MUSIC_HAS_THE_RIGHT_TO_CHILDREN("Boards of Canada - Music Has the Right to Children", "src/main/resources/images/Boards of Canada - Music Has the Right to Children.jpg"),
+   BONOBO_BLACK_SANDS("Bonobo - Black Sands", "src/main/resources/images/Bonobo - Black Sands.jpg"),
+   BRIAN_ENO_AMBIENT_1_MUSIC_FOR_AIRPORTS("Brian Eno - Ambient 1 Music For Airports", "src/main/resources/images/Brian Eno - Ambient 1 Music For Airports.jpg"),
+   BRIAN_ENO_AMBIENT_2_PLATEAUX_OF_MIRROR("Brian Eno - Ambient 2 Plateaux Of Mirror", "src/main/resources/images/Brian Eno - Ambient 2 Plateaux Of Mirror.jpg"),
+   BURIAL_UNTRUE("Burial - Untrue", "src/main/resources/images/Burial - Untrue.jpg"),
+   DJ_SHADOW_ENDTRODUCING("DJ Shadow - Endtroducing", "src/main/resources/images/DJ Shadow - Endtroducing......jpg"),
+   DAFT_PUNK_DISCOVERY("Daft Punk - Discovery", "src/main/resources/images/Daft Punk - Discovery.jpg"),
+   DARKSIDE_PSYCHIC("Darkside - Psychic", "src/main/resources/images/Darkside - Psychic.jpg"),
+   FUCK_BUTTONS_TAROT_SPORT("Fuck Buttons - Tarot Sport", "src/main/resources/images/Fuck Buttons - Tarot Sport..jpg"),
+   GIRL_TALK_FEED_THE_ANIMALS("Girl Talk - Feed The Animals", "src/main/resources/images/Girl Talk - Feed The Animals.jpg"),
+   GLOBAL_COMMUNICATION_76_14("Global Communication - 76 14", "src/main/resources/images/Global Communication - 76 14.jpg"),
+   GODSPEED_YOU_BLACK_EMPEROR_LIFT_YOUR_SKINNY_FISTS_LIKE_ANTENNAS_TO_HEAVEN("Godspeed You! Black Emperor - Lift Your Skinny Fists Like Antennas to Heaven", "src/main/resources/images/Godspeed You! Black Emperor - Lift Your Skinny Fists Like Antennas to Heaven.jpg"),
+   GOLDIE_TIMELESS("Goldie - Timeless", "src/main/resources/images/Goldie - Timeless.jpg"),
+   HELIOS_EINGYA("Helios - Eingya", "src/main/resources/images/Helios - Eingya.jpg"),
+   JAMES_BLAKE_JAMES_BLAKE("James Blake - James Blake", "src/main/resources/images/James Blake - James Blake.jpg"),
+   JON_HOPKINS_IMMUNITY("Jon Hopkins - Immunity", "src/main/resources/images/Jon Hopkins - Immunity.jpg"),
+   JUSTICE_CROSS("Justice - Cross", "src/main/resources/images/Justice - Cross.jpg"),
+   KANYE_WEST_808S_HEARTBREAK("Kanye West - 808s & Heartbreak", "src/main/resources/images/Kanye West - 808s & Heartbreak.jpg"),
+   KASHIWA_DAISUKE_PROGRAM_MUSIC("Kashiwa Daisuke - Program Music", "src/main/resources/images/Kashiwa Daisuke - Program Music.jpg"),
+   KLAUS_SCHULZE_TIMEWIND("Klaus Schulze - Timewind", "src/main/resources/images/Klaus Schulze - Timewind.jpg"),
+   LONE_GALAXY_GARDEN("Lone - Galaxy Garden", "src/main/resources/images/Lone - Galaxy Garden.jpg"),
+   MACHINEDRUM_ROOM("Machinedrum - Room(s)", "src/main/resources/images/Machinedrum - Room(s).jpg"),
+   MANUEL_GÖTTSCHING_E2_E4("Manuel Göttsching – e2 - e4", "src/main/resources/images/Manuel Göttsching – e2 - e4.jpg"),
+   MASSIVE_ATTACK_MEZZANINE("Massive Attack - Mezzanine", "src/main/resources/images/Massive Attack - Mezzanine.jpg"),
+   MORT_GARRISON_PLANTASIA("Mort Garrison - Plantasia", "src/main/resources/images/Mort Garrison - Plantasia.jpg"),
+   NEU_NEU("Neu! - Neu!", "src/main/resources/images/Neu! - Neu!.jpg"),
+   NICOLAS_JAAR_SPACE_IS_ONLY_NOISE("Nicolas Jaar - Space Is Only Noise", "src/main/resources/images/Nicolas Jaar - Space Is Only Noise.jpg"),
+   NUJABES_METAPHORICAL_MUSIC("Nujabes - Metaphorical Music", "src/main/resources/images/Nujabes - Metaphorical Music.jpg"),
+   ORB_THE_ORBS_ADVENTURES_BEYOND_THE_ULTRAWORLD("Orb - The Orbs Adventures Beyond The Ultraworld", "src/main/resources/images/Orb - The Orbs Adventures Beyond The Ultraworld.jpg"),
+   ORBITAL_BROWN_ALBUM("Orbital - Brown Album", "src/main/resources/images/Orbital - Brown Album.jpg"),
+   RADIOHEAD_KID_A("Radiohead - Kid A", "src/main/resources/images/Radiohead - Kid A.jpg"),
+   RADIOHEAD_OK_COMPUTER("Radiohead - OK Computer", "src/main/resources/images/Radiohead - OK Computer.jpg"),
+   SASHA_JOHN_FIGWEED_NORTHEN_EXPOSURE("Sasha & John Figweed - Northen Exposure", "src/main/resources/images/Sasha & John Figweed - Northen Exposure.jpg"),
+   SHPONGLE_ARE_YOU_SHPONGLED("Shpongle - Are You Shpongled", "src/main/resources/images/Shpongle - Are You Shpongled.jpg"),
+   TOKIMONSTA_MIDNIGHT_MENU("TOKiMONSTA – Midnight Menu", "src/main/resources/images/TOKiMONSTA – Midnight Menu.jpg"),
+   TANGERINE_DREAM_PHAEDRA("Tangerine Dream - Phaedra", "src/main/resources/images/Tangerine Dream - Phaedra.jpg"),
+   THE_AVALANCHES_SINCE_I_LEFT_YOU("The Avalanches - Since I left You", "src/main/resources/images/The Avalanches - Since I left You.jpg"),
+   THE_FUTURE_SOUND_OF_LONDON_LIFEFORMS("The Future Sound Of London - Lifeforms", "src/main/resources/images/The Future Sound Of London - Lifeforms.jpg"),
+   THE_FUTURE_SOUND_OF_LONDON_ACCELERATOR("The Future Sound of London - Accelerator", "src/main/resources/images/The Future Sound of London - Accelerator.jpg"),
+   THE_KNIFE_SILENT_SHOUT("The Knife - Silent Shout", "src/main/resources/images/The Knife - Silent Shout.jpg"),
+   TYCHO_DIVE("Tycho - Dive", "src/main/resources/images/Tycho - Dive.jpg"),
+   VENETIAN_SNARES_ROSSZ_CSILLAG_ALATT_SZULETETT("Venetian Snares - Rossz Csillag Alatt Szuletett", "src/main/resources/images/Venetian Snares - Rossz Csillag Alatt Szuletett.jpg"),
+   VILLALOBOS_ALCACHOFA("Villalobos - Alcachofa", "src/main/resources/images/Villalobos - Alcachofa.jpg")
    ;
 
    fullName : String
