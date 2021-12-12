@@ -1,14 +1,13 @@
 package com.drools.example
-import javafx.stage.Stage
-import javafx.scene.control.Button
-import javafx.scene.Scene
+
 import java.io.FileInputStream
-import javafx.scene.image.Image
-import javafx.scene.image.ImageView
+
 import org.kie.api.runtime.KieRuntime
+
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
-import com.sample.AlbumAnswer
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
 import javafx.scene.control.DialogPane
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane
@@ -16,34 +15,15 @@ import javafx.scene.control.Label
 import javafx.scene.layout.GridPane
 import javafx.geometry.Pos
 import javafx.scene.text.Font
+import javafx.stage.Stage
+import javafx.scene.control.Button
+import javafx.scene.Scene
 
-function ImageView loadImageView(String path) {
-    FileInputStream input = new FileInputStream(path);
-    Image image = new Image(input);
-    return new ImageView(image);
-}
-
-function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
-
-    FileInputStream input = new FileInputStream(album.getPathName());
-    Image image = new Image(input);
-    ImageView imageView = new ImageView(image);
-
-    Alert alert = new Alert(Alert.AlertType.NONE, album.getFullName(),
-     ButtonType.YES, ButtonType.NO);
-     alert.setGraphic(imageView);
-
-     alert.showAndWait();
-
-     AlbumAnswer albumAnswer = new AlbumAnswer();
-     albumAnswer.setAlbum(album);
-     albumAnswer.setAns(alert.getResult().getText());
-     return albumAnswer;
-}
 
 declare QuestionAnswer
     ans : String
 end
+
 
 declare AlbumAnswer
     album : Album
@@ -107,12 +87,64 @@ rule "Kanye West - 808 & Heartbreak no answer"
 when
     albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.KANYE_WEST_808_AND_HEARTBREAK )
 then
-    // utworz alert z jego odpowiedziami
-    ButtonType realRapMusic = new ButtonType("Come on, I want REAL rap music");
-    ButtonType giveMeSomeHipHopBeats = new ButtonType("Give me some nice hip-hop beats");
 
-    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(),
-             realRapMusic, giveMeSomeHipHopBeats);
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                    "Come on, I want REAL rap music", "Give me some nice hip-hop beats");
+
+    insert( questionAnswer );
+
+end
+
+rule "Come On, I want REAL rap music"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Come on, I want REAL rap music") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.GIRL_TALK_FEED_THE_ANIMALS);
+    insert( albumAnswer );
+
+end
+
+
+
+
+declare enum Album
+   KANYE_WEST_808_AND_HEARTBREAK("Kanye West - 808s & Heartbreak", "src/main/resources/images/Kanye West - 808s & Heartbreak.jpg"),
+   GIRL_TALK_FEED_THE_ANIMALS("Girl Talk - Feed The Animals", "src/main/resources/images/Girl Talk - Feed The Animals.jpg")
+   ;
+
+   fullName : String
+   pathName : String
+end
+
+function ImageView loadImageView(String path) {
+    FileInputStream input = new FileInputStream(path);
+    Image image = new Image(input);
+    return new ImageView(image);
+}
+
+function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
+
+    FileInputStream input = new FileInputStream(album.getPathName());
+    Image image = new Image(input);
+    ImageView imageView = new ImageView(image);
+
+    Alert alert = new Alert(Alert.AlertType.NONE, album.getFullName(),
+                            ButtonType.YES, ButtonType.NO);
+    alert.setGraphic(imageView);
+
+    alert.showAndWait();
+
+    AlbumAnswer albumAnswer = new AlbumAnswer();
+    albumAnswer.setAlbum(album);
+    albumAnswer.setAns(alert.getResult().getText());
+    return albumAnswer;
+}
+
+function QuestionAnswer alertOneButtonAlertAndGetTheAnswer(AlbumAnswer albumAnswer, String firstPossisbleAnswer) {
+    ButtonType firstButton = new ButtonType(firstPossisbleAnswer);
+
+    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton);
 
     ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
     alert.setGraphic(imageView);
@@ -121,14 +153,66 @@ then
     QuestionAnswer answer = new QuestionAnswer();
     answer.setAns(alert.getResult().getText());
 
-    insert(answer);
+    return answer;
+}
 
-end
+function QuestionAnswer alertTwoButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
+                                                        String firstPossisbleAnswer, String secondPossibleAnswer) {
 
+    ButtonType firstButton = new ButtonType(firstPossisbleAnswer);
+    ButtonType secondButton = new ButtonType(secondPossibleAnswer);
 
-declare enum Album
-   KANYE_WEST_808_AND_HEARTBREAK("Kanye West - 808s & Heartbreak", "src/main/resources/images/Kanye West - 808s & Heartbreak.jpg");
+    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton, secondButton);
 
-   fullName : String
-   pathName : String
-end
+    ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
+    alert.setGraphic(imageView);
+
+    alert.showAndWait();
+    QuestionAnswer answer = new QuestionAnswer();
+    answer.setAns(alert.getResult().getText());
+
+    return answer;
+}
+
+function QuestionAnswer alertThreeButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
+                                                        String firstPossisbleAnswer, String secondPossibleAnswer,
+                                                        String thirdPossibleAnswer) {
+
+    ButtonType firstButton = new ButtonType(firstPossisbleAnswer);
+    ButtonType secondButton = new ButtonType(secondPossibleAnswer);
+    ButtonType thirdButton = new ButtonType(thirdPossibleAnswer);
+
+    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton,
+                            secondButton, thirdButton);
+
+    ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
+    alert.setGraphic(imageView);
+
+    alert.showAndWait();
+    QuestionAnswer answer = new QuestionAnswer();
+    answer.setAns(alert.getResult().getText());
+
+    return answer;
+}
+
+function QuestionAnswer alertFourButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
+                                                        String firstPossisbleAnswer, String secondPossibleAnswer,
+                                                        String thirdPossibleAnswer, String fourthPossibleAnswer) {
+
+    ButtonType firstButton = new ButtonType(firstPossisbleAnswer);
+    ButtonType secondButton = new ButtonType(secondPossibleAnswer);
+    ButtonType thirdButton = new ButtonType(thirdPossibleAnswer);
+    ButtonType fourthButton = new ButtonType(fourthPossibleAnswer);
+
+    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton,
+                            secondButton, thirdButton, fourthButton);
+
+    ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
+    alert.setGraphic(imageView);
+
+    alert.showAndWait();
+    QuestionAnswer answer = new QuestionAnswer();
+    answer.setAns(alert.getResult().getText());
+
+    return answer;
+}
