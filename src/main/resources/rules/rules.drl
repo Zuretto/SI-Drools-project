@@ -129,9 +129,28 @@ function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
     Image image = new Image(input);
     ImageView imageView = new ImageView(image);
 
-    Alert alert = new Alert(Alert.AlertType.NONE, album.getFullName(),
+    Alert alert = new Alert(Alert.AlertType.NONE, "",
                             ButtonType.YES, ButtonType.NO);
-    alert.setGraphic(imageView);
+
+    DialogPane dialogPane = alert.getDialogPane();
+    GridPane grid = new GridPane();
+
+    StackPane stackPane = new StackPane(imageView);
+    stackPane.setMinWidth(400);
+    stackPane.setAlignment(Pos.CENTER);
+    grid.add(stackPane, 0,0);
+
+    Label bottomLabel = new Label(album.getFullName());
+    bottomLabel.setAlignment(Pos.CENTER);
+    bottomLabel.setMaxWidth(Double.MAX_VALUE);
+    bottomLabel.setMaxHeight(Double.MAX_VALUE);
+    bottomLabel.setFont(new Font("Arial", 20));
+    bottomLabel.setMinHeight(80.0);
+    grid.add(bottomLabel, 0,1);
+
+    dialogPane.setHeader(grid);
+
+    //alert.setGraphic(imageView);
 
     alert.showAndWait();
 
