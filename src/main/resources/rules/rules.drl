@@ -149,9 +149,6 @@ function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
     grid.add(bottomLabel, 0,1);
 
     dialogPane.setHeader(grid);
-
-    //alert.setGraphic(imageView);
-
     alert.showAndWait();
 
     AlbumAnswer albumAnswer = new AlbumAnswer();
@@ -163,11 +160,26 @@ function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
 function QuestionAnswer alertOneButtonAlertAndGetTheAnswer(AlbumAnswer albumAnswer, String firstPossisbleAnswer) {
     ButtonType firstButton = new ButtonType(firstPossisbleAnswer);
 
-    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton);
+    Alert alert = new Alert(Alert.AlertType.NONE,"" , firstButton);
 
     ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
-    alert.setGraphic(imageView);
+    DialogPane dialogPane = alert.getDialogPane();
+    GridPane grid = new GridPane();
 
+    StackPane stackPane = new StackPane(imageView);
+    stackPane.setMinWidth(400);
+    stackPane.setAlignment(Pos.CENTER);
+    grid.add(stackPane, 0,0);
+
+    Label bottomLabel = new Label(albumAnswer.getAlbum().getFullName());
+    bottomLabel.setAlignment(Pos.CENTER);
+    bottomLabel.setMaxWidth(Double.MAX_VALUE);
+    bottomLabel.setMaxHeight(Double.MAX_VALUE);
+    bottomLabel.setFont(new Font("Arial", 20));
+    bottomLabel.setMinHeight(80.0);
+    grid.add(bottomLabel, 0,1);
+
+    dialogPane.setHeader(grid);
     alert.showAndWait();
     QuestionAnswer answer = new QuestionAnswer();
     answer.setAns(alert.getResult().getText());
@@ -181,10 +193,27 @@ function QuestionAnswer alertTwoButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
     ButtonType firstButton = new ButtonType(firstPossisbleAnswer);
     ButtonType secondButton = new ButtonType(secondPossibleAnswer);
 
-    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton, secondButton);
+    Alert alert = new Alert(Alert.AlertType.NONE, "", firstButton, secondButton);
 
     ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
-    alert.setGraphic(imageView);
+    
+    DialogPane dialogPane = alert.getDialogPane();
+    GridPane grid = new GridPane();
+
+    StackPane stackPane = new StackPane(imageView);
+    stackPane.setMinWidth(590);
+    stackPane.setAlignment(Pos.CENTER);
+    grid.add(stackPane, 0,0);
+
+    Label bottomLabel = new Label(albumAnswer.getAlbum().getFullName());
+    bottomLabel.setAlignment(Pos.CENTER);
+    bottomLabel.setMaxWidth(Double.MAX_VALUE);
+    bottomLabel.setMaxHeight(Double.MAX_VALUE);
+    bottomLabel.setFont(new Font("Arial", 20));
+    bottomLabel.setMinHeight(80.0);
+    grid.add(bottomLabel, 0,1);
+
+    dialogPane.setHeader(grid);
 
     alert.showAndWait();
     QuestionAnswer answer = new QuestionAnswer();
@@ -201,11 +230,28 @@ function QuestionAnswer alertThreeButtonsAndGetTheAnswer(AlbumAnswer albumAnswer
     ButtonType secondButton = new ButtonType(secondPossibleAnswer);
     ButtonType thirdButton = new ButtonType(thirdPossibleAnswer);
 
-    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton,
+    Alert alert = new Alert(Alert.AlertType.NONE, "", firstButton,
                             secondButton, thirdButton);
 
     ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
-    alert.setGraphic(imageView);
+    
+	DialogPane dialogPane = alert.getDialogPane();
+    GridPane grid = new GridPane();
+
+    StackPane stackPane = new StackPane(imageView);
+    stackPane.setMinWidth(800);
+    stackPane.setAlignment(Pos.CENTER);
+    grid.add(stackPane, 0,0);
+
+    Label bottomLabel = new Label(albumAnswer.getAlbum().getFullName());
+    bottomLabel.setAlignment(Pos.CENTER);
+    bottomLabel.setMaxWidth(Double.MAX_VALUE);
+    bottomLabel.setMaxHeight(Double.MAX_VALUE);
+    bottomLabel.setFont(new Font("Arial", 20));
+    bottomLabel.setMinHeight(80.0);
+    grid.add(bottomLabel, 0,1);
+
+    dialogPane.setHeader(grid);
 
     alert.showAndWait();
     QuestionAnswer answer = new QuestionAnswer();
@@ -223,11 +269,28 @@ function QuestionAnswer alertFourButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
     ButtonType thirdButton = new ButtonType(thirdPossibleAnswer);
     ButtonType fourthButton = new ButtonType(fourthPossibleAnswer);
 
-    Alert alert = new Alert(Alert.AlertType.NONE, albumAnswer.getAlbum().getFullName(), firstButton,
+    Alert alert = new Alert(Alert.AlertType.NONE, "", firstButton,
                             secondButton, thirdButton, fourthButton);
 
     ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
-    alert.setGraphic(imageView);
+    
+	DialogPane dialogPane = alert.getDialogPane();
+    GridPane grid = new GridPane();
+
+    StackPane stackPane = new StackPane(imageView);
+    stackPane.setMinWidth(1000);
+    stackPane.setAlignment(Pos.CENTER);
+    grid.add(stackPane, 0,0);
+
+    Label bottomLabel = new Label(albumAnswer.getAlbum().getFullName());
+    bottomLabel.setAlignment(Pos.CENTER);
+    bottomLabel.setMaxWidth(Double.MAX_VALUE);
+    bottomLabel.setMaxHeight(Double.MAX_VALUE);
+    bottomLabel.setFont(new Font("Arial", 20));
+    bottomLabel.setMinHeight(80.0);
+    grid.add(bottomLabel, 0,1);
+
+    dialogPane.setHeader(grid);
 
     alert.showAndWait();
     QuestionAnswer answer = new QuestionAnswer();
