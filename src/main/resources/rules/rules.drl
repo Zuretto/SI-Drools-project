@@ -105,6 +105,138 @@ then
 
 end
 
+rule "Give me some nice hip-hop beats"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Give me some nice hip-hop beats") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NUJABES_METAPHORICAL_MUSIC);
+    insert( albumAnswer );
+
+end
+
+rule "Girl talk, feed the animals answer"
+when
+    albumAnswer: AlbumAnswer( ans.equals("No") && album == Album.GIRL_TALK_FEED_THE_ANIMALS)
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                        "Whoa, sampling is cool, more like that");
+    insert( questionAnswer );
+
+ end
+
+rule "Whoa, sampling is cool, more like that"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Whoa, sampling is cool, more like that") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.THE_AVALANCHES_SINCE_I_LEFT_YOU);
+    insert( albumAnswer );
+
+end
+
+rule "DJ Shadow Endtroducing answer"
+when
+    albumAnswer: AlbumAnswer( ans.equals("No") && album == Album.DJ_SHADOW_ENDTRODUCING)
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                        "I'm liking these instrumental beats. More please");
+    insert( questionAnswer );
+
+ end
+
+rule "I'm liking these instrumental beats. More please"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I'm liking these instrumental beats. More please") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NUJABES_METAPHORICAL_MUSIC);
+    insert( albumAnswer );
+
+end
+
+rule "Avalanches - Since I Left You answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.THE_AVALANCHES_SINCE_I_LEFT_YOU )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                    "More sampling, with a hip-hop vibe to it", "Darker. Sadder. The samples could be messed with a little more.");
+
+    insert( questionAnswer );
+
+end
+
+rule "More sampling, with a hip-hop vibe to it"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More sampling, with a hip-hop vibe to it") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.DJ_SHADOW_ENDTRODUCING);
+    insert( albumAnswer );
+
+end
+
+rule "Darker. Sadder. The samples could be messed with a little more."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Darker. Sadder. The samples could be messed with a little more.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BURIAL_UNTRUE);
+    insert( albumAnswer );
+
+end
+
+rule "Keep the beats, but make it dark and operatic."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Keep the beats, but make it dark and operatic.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BURIAL_UNTRUE);
+    insert( albumAnswer );
+
+end
+
+rule "Nujabes - Metaphorical Music answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.NUJABES_METAPHORICAL_MUSIC )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Stranger! Wonkier!");
+
+    insert( questionAnswer );
+
+end
+
+rule "Stranger! Wonkier!"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Stranger! Wonkier!") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TOKIMONSTA_MIDNIGHT_MENU);
+    insert( albumAnswer );
+
+end
+
+rule "TOKIMONSTA_MIDNIGHT_MENU answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.TOKIMONSTA_MIDNIGHT_MENU )
+then
+
+    QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
+                                   "I like those beats. What if they were a bit more spaced out?",
+                                   "I can deal with the weird parts. I think I'm ready for the classics",
+                                   "Even stranger! Even wonkier!",
+                                   "Keep the beats, but make it dark and operatic.");
+
+    insert( questionAnswer );
+
+end
+
+
 
 
 
