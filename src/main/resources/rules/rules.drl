@@ -66,7 +66,7 @@ then
     grid.add(topLabel, 0,0);
     
     StackPane stackPane = new StackPane(imageV);
-    stackPane.setMinWidth(400);
+    stackPane.setMinWidth(600);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,1);
 
@@ -105,6 +105,374 @@ then
 
 end
 
+rule "Give me some nice hip-hop beats"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Give me some nice hip-hop beats") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NUJABES_METAPHORICAL_MUSIC);
+    insert( albumAnswer );
+
+end
+
+rule "Girl talk, feed the animals answer"
+when
+    albumAnswer: AlbumAnswer( ans.equals("No") && album == Album.GIRL_TALK_FEED_THE_ANIMALS)
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                        "Whoa, sampling is cool, more like that");
+    insert( questionAnswer );
+
+ end
+
+rule "Whoa, sampling is cool, more like that"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Whoa, sampling is cool, more like that") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.THE_AVALANCHES_SINCE_I_LEFT_YOU);
+    insert( albumAnswer );
+
+end
+
+rule "DJ Shadow Endtroducing answer"
+when
+    albumAnswer: AlbumAnswer( ans.equals("No") && album == Album.DJ_SHADOW_ENDTRODUCING)
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                        "I'm liking these instrumental beats. More please");
+    insert( questionAnswer );
+
+ end
+
+rule "I'm liking these instrumental beats. More please"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I'm liking these instrumental beats. More please") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NUJABES_METAPHORICAL_MUSIC);
+    insert( albumAnswer );
+
+end
+
+rule "Avalanches - Since I Left You answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.THE_AVALANCHES_SINCE_I_LEFT_YOU )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                    "More sampling, with a hip-hop vibe to it", "Darker. Sadder. The samples could be messed with a little more.");
+
+    insert( questionAnswer );
+
+end
+
+rule "More sampling, with a hip-hop vibe to it"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More sampling, with a hip-hop vibe to it") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.DJ_SHADOW_ENDTRODUCING);
+    insert( albumAnswer );
+
+end
+
+rule "Darker. Sadder. The samples could be messed with a little more."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Darker. Sadder. The samples could be messed with a little more.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BURIAL_UNTRUE);
+    insert( albumAnswer );
+
+end
+
+rule "Keep the beats, but make it dark and operatic."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Keep the beats, but make it dark and operatic.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BURIAL_UNTRUE);
+    insert( albumAnswer );
+
+end
+
+rule "Nujabes - Metaphorical Music answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.NUJABES_METAPHORICAL_MUSIC )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer, "I need more of these lush, organic sounds.",
+                                   "Stranger! Wonkier!");
+
+    insert( questionAnswer );
+
+end
+
+rule "Stranger! Wonkier!"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Stranger! Wonkier!") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TOKIMONSTA_MIDNIGHT_MENU);
+    insert( albumAnswer );
+
+end
+
+rule "TOKIMONSTA_MIDNIGHT_MENU answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.TOKIMONSTA_MIDNIGHT_MENU )
+then
+
+    QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
+                                   "I like those beats. What if they were a bit more spaced out?",
+                                   "I can deal with the weird parts. I think I'm ready for the classics",
+                                   "Even stranger! Even wonkier!",
+                                   "Keep the beats, but make it dark and operatic.");
+
+    insert( questionAnswer );
+
+end
+
+rule "Less melody, more subtle"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Less melody, more subtle") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.VILLALOBOS_ALCACHOFA);
+    insert(answer);
+
+end
+
+rule "This is much to busy and melodious for my tastes"
+when
+    questionAnswer : QuestionAnswer( ans.equals("This is much to busy and melodious for my tastes") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.VILLALOBOS_ALCACHOFA);
+    insert(answer);
+
+end
+
+rule "I need more of these lush, organic sounds" //do Bonobo z kropka, do Nujabes bez
+when
+    questionAnswer : QuestionAnswer( ans.equals("I need more of these lush, organic sounds") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NUJABES_METAPHORICAL_MUSIC);
+    insert( albumAnswer );
+
+end
+
+rule "I need more of these lush, organic sounds."//do Bonobo z kropka, do Nujabes bez
+when
+    questionAnswer : QuestionAnswer( ans.equals("I need more of these lush, organic sounds.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BONOBO_BLACK_SANDS);
+    insert( albumAnswer );
+
+end
+
+rule "Chill it out"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Chill it out") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TYCHO_DIVE);
+    insert( albumAnswer );
+
+end
+
+rule "Where can I go from here?"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Where can I go from here?") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BONOBO_BLACK_SANDS);
+    insert( albumAnswer );
+
+end
+
+rule "BONOBO_BLACK_SANDS answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.BONOBO_BLACK_SANDS )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "I need more of these lush, organic sounds",
+                                   "Chill it out");
+
+    insert( questionAnswer );
+
+end
+
+rule "Make it stranger. I want to listen to an educational film from the eighties"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Make it stranger. I want to listen to an educational film from the eighties") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BOARDS_OF_CANADA_MUSIC_HAS_THE_RIGHT_TO_CHILDREN);
+    insert( albumAnswer );
+
+end
+
+rule "TYCHO_DIVE answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.TYCHO_DIVE )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Make it stranger. I want to listen to an educational film from the eighties"
+                                   );
+
+    insert( questionAnswer );
+
+end
+
+rule "BOARDS_OF_CANADA_MUSIC_HAS_THE_RIGHT_TO_CHILDREN answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.BOARDS_OF_CANADA_MUSIC_HAS_THE_RIGHT_TO_CHILDREN )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "I want something more \"electric\" feeling"
+                                   );
+
+    insert( questionAnswer );
+
+end
+
+rule "I want something more \"electric\" feeling"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I want something more \"electric\" feeling") )
+then
+    
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.APHEX_TWIN_SELECTED_AMBIENT_WORKS);
+    insert(answer);
+
+end
+
+rule "I like those beats. What if they were a bit more spaced out?"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like those beats. What if they were a bit more spaced out?") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BOARDS_OF_CANADA_MUSIC_HAS_THE_RIGHT_TO_CHILDREN);
+    insert( albumAnswer );
+
+end
+
+rule "I can deal with the weird parts. I think I'm ready for the classics"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I can deal with the weird parts. I think I'm ready for the classics") )
+then
+    
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.APHEX_TWIN_SELECTED_AMBIENT_WORKS);
+    insert(answer);
+
+end
+
+rule "Cool, I guess electronic music isn\'t just talentless button pushing. More like this"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Cool, I guess electronic music isn\'t just talentless button pushing. More like this") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.APHEX_TWIN_DRUKQS);
+    insert( albumAnswer );
+
+end
+
+rule "BONOBO_BLACK_SANDS answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.APHEX_TWIN_DRUKQS )
+then
+
+    QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
+                                   "I can\'t wrap my head around these drums, but I like the rest of it. No drums",
+                                   "That sounds dated. Something more recent?",
+                                   "Let\'s get a steady beat on that",
+                                   "These complex beats are awesome. Can they get wilder");
+
+    insert( questionAnswer );
+
+end
+
+rule "More drums"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More drums") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
+    insert( albumAnswer );
+
+end
+
+rule "I like the glitchy drums"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like the glitchy drums") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
+    insert( albumAnswer );
+
+end
+
+rule "I actually liked the drums and bleeps they had going on. More of that"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I actually liked the drums and bleeps they had going on. More of that") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
+    insert( albumAnswer );
+
+end
+
+rule "AUTECHRE_AMBER answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.AUTECHRE_AMBER )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Cool, I guess electronic music isn\'t just talentless button pushing. More like this"
+                                   );
+
+    insert( questionAnswer );
+
+end
+
+rule "KLAUS_SCHULZE_TIMEWIND answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.KLAUS_SCHULZE_TIMEWIND )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "Let\'s get a steady beat on that",
+                                   "More drums");
+
+    insert( questionAnswer );
+
+end
+
+rule "Let\'s get a steady beat on that"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Let\'s get a steady beat on that") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.ORB_THE_ORBS_ADVENTURES_BEYOND_THE_ULTRAWORLD);
+    insert( albumAnswer );
+
+end
 
 
 
@@ -180,7 +548,7 @@ function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(400);
+    stackPane.setMinWidth(600);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
@@ -211,7 +579,7 @@ function QuestionAnswer alertOneButtonAlertAndGetTheAnswer(AlbumAnswer albumAnsw
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(400);
+    stackPane.setMinWidth(600);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
@@ -245,7 +613,7 @@ function QuestionAnswer alertTwoButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(590);
+    stackPane.setMinWidth(900);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
@@ -283,7 +651,7 @@ function QuestionAnswer alertThreeButtonsAndGetTheAnswer(AlbumAnswer albumAnswer
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(800);
+    stackPane.setMinWidth(1200);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
@@ -322,7 +690,7 @@ function QuestionAnswer alertFourButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(1000);
+    stackPane.setMinWidth(1800);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
