@@ -393,7 +393,7 @@ then
 
 end
 
-rule "BONOBO_BLACK_SANDS answer"
+rule "APHEX_TWIN_DRUKQS answer"
 when
     albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.APHEX_TWIN_DRUKQS )
 then
