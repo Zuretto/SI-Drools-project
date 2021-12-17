@@ -62,7 +62,7 @@ then
 	DialogPane dialogPane = alerts.getDialogPane();
     GridPane grid = new GridPane();
     
-    Label topLabel = new Label("Your choice:");
+    Label topLabel = new Label("The album for you:");
     topLabel.setAlignment(Pos.CENTER);
     topLabel.setMaxWidth(Double.MAX_VALUE);
     topLabel.setMaxHeight(Double.MAX_VALUE);
@@ -71,7 +71,7 @@ then
     grid.add(topLabel, 0,0);
     
     StackPane stackPane = new StackPane(imageV);
-    stackPane.setMinWidth(600);
+    stackPane.setMinWidth(750);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,1);
 
@@ -479,9 +479,8 @@ when
 then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
-    //QuestionAnswer qa = new QuestionAnswer();
-    //qa.setAns("ehh");
-    //insert(qa);
+    questionAnswer.setAns("");
+    update(questionAnswer);
     insert( albumAnswer );
 
 end
@@ -492,9 +491,8 @@ when
 then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.APHEX_TWIN_SELECTED_AMBIENT_WORKS);
-    //QuestionAnswer qa = new QuestionAnswer();
-    //qa.setAns("ehh");
-    //insert(qa);
+    questionAnswer.setAns("");
+    update(questionAnswer);
     insert( albumAnswer );
 
 end
@@ -949,10 +947,18 @@ function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
     DialogPane dialogPane = alert.getDialogPane();
     GridPane grid = new GridPane();
 
+	Label topLabel = new Label("Do you want to end on that album?");
+    topLabel.setAlignment(Pos.CENTER);
+    topLabel.setMaxWidth(Double.MAX_VALUE);
+    topLabel.setMaxHeight(Double.MAX_VALUE);
+    topLabel.setFont(new Font("Arial", 20));
+    topLabel.setMinHeight(80.0);
+    grid.add(topLabel, 0,0);
+
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(600);
+    stackPane.setMinWidth(750);
     stackPane.setAlignment(Pos.CENTER);
-    grid.add(stackPane, 0,0);
+    grid.add(stackPane, 0,1);
 
     Label bottomLabel = new Label(album.getFullName());
     bottomLabel.setAlignment(Pos.CENTER);
@@ -960,7 +966,7 @@ function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
     bottomLabel.setMaxHeight(Double.MAX_VALUE);
     bottomLabel.setFont(new Font("Arial", 20));
     bottomLabel.setMinHeight(80.0);
-    grid.add(bottomLabel, 0,1);
+    grid.add(bottomLabel, 0,2);
 
     dialogPane.setHeader(grid);
     alert.showAndWait();
@@ -981,7 +987,7 @@ function QuestionAnswer alertOneButtonAlertAndGetTheAnswer(AlbumAnswer albumAnsw
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(600);
+    stackPane.setMinWidth(750);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
@@ -1053,7 +1059,7 @@ function QuestionAnswer alertThreeButtonsAndGetTheAnswer(AlbumAnswer albumAnswer
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(1200);
+    stackPane.setMinWidth(1600);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
