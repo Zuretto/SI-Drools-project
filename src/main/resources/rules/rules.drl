@@ -199,7 +199,7 @@ then
 
 end
 
-rule "Nujabes - Metaphorical Music answer"
+rule "NUJABES_METAPHORICAL_MUSIC answer"
 when
     albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.NUJABES_METAPHORICAL_MUSIC )
 then
@@ -474,7 +474,357 @@ then
 
 end
 
+rule "KASHIWA_DAISUKE_PROGRAM_MUSIC answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.KASHIWA_DAISUKE_PROGRAM_MUSIC )
+then
 
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "I like the glitchy drums",
+                                   "I like the more ambient parts");
+
+    insert( questionAnswer );
+
+end
+
+rule "I like the more ambient parts"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like the more ambient parts") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TANGERINE_DREAM_PHAEDRA);
+    insert( albumAnswer );
+
+end
+
+rule "NEU_NEU answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.NEU_NEU )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "More electronic influence",
+                                   "This, but electronic");
+
+    insert( questionAnswer );
+
+end
+
+rule "More electronic influence"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More electronic influence") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.MANUEL_GOTTSCHING_E2_E4);
+    insert( albumAnswer );
+
+end
+
+rule "This, but electronic"
+when
+    questionAnswer : QuestionAnswer( ans.equals("This, but electronic") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KLAUS_SCHULZE_TIMEWIND);
+    insert( albumAnswer );
+
+end
+
+rule "MANUEL_GOTTSCHING_E2_E4 answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.MANUEL_GOTTSCHING_E2_E4 )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Fully electronic now");
+
+    insert( questionAnswer );
+
+end
+
+rule "Fully electronic now"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Fully electronic now") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TANGERINE_DREAM_PHAEDRA);
+    insert( albumAnswer );
+
+end
+
+rule "TANGERINE_DREAM_PHAEDRA answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.TANGERINE_DREAM_PHAEDRA )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "More ambient stuff",
+                                   "This style of syths, but shorter songs and carelessly happy");
+
+    insert( questionAnswer );
+
+end
+
+rule "More ambient stuff"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More ambient stuff") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.GLOBAL_COMMUNICATION_76_14);
+    insert( albumAnswer );
+
+end
+
+rule "This style of syths, but shorter songs and carelessly happy"
+when
+    questionAnswer : QuestionAnswer( ans.equals("This style of syths, but shorter songs and carelessly happy") )
+then
+	
+	AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.MORT_GARRISON_PLANTASIA);
+    insert(answer);
+	
+end
+
+rule "FUCK_BUTTONS_TAROT_SPORT answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.FUCK_BUTTONS_TAROT_SPORT )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "More, quieter though");
+
+    insert( questionAnswer );
+
+end
+
+rule "More, quieter though"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More, quieter though") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TANGERINE_DREAM_PHAEDRA);
+    insert( albumAnswer );
+
+end
+
+rule "GODSPEED_YOU_BLACK_EMPEROR_LIFT_YOUR_SKINNY_FISTS_LIKE_ANTENNAS_TO_HEAVEN answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.GODSPEED_YOU_BLACK_EMPEROR_LIFT_YOUR_SKINNY_FISTS_LIKE_ANTENNAS_TO_HEAVEN )
+then
+
+    QuestionAnswer questionAnswer = alertThreeButtonsAndGetTheAnswer(albumAnswer,
+                                   "I love those buildups! I could try some electronic music that does that",
+                                   "I think I could handle that, but way more minimal",
+                                   "I like the post-rock structure and scale");
+
+    insert( questionAnswer );
+
+end
+
+rule "I love those buildups! I could try some electronic music that does that"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I love those buildups! I could try some electronic music that does that") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.FUCK_BUTTONS_TAROT_SPORT);
+    insert( albumAnswer );
+
+end
+
+rule "I think I could handle that, but way more minimal"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I think I could handle that, but way more minimal") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NEU_NEU);
+    insert( albumAnswer );
+
+end
+
+rule "I like the post-rock structure and scale"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like the post-rock structure and scale") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KASHIWA_DAISUKE_PROGRAM_MUSIC);
+    insert( albumAnswer );
+
+end
+
+rule "RADIOHEAD_KID_A answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.RADIOHEAD_KID_A )
+then
+
+    QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
+                                   "I actually like the drums and bleeps they had going on. More of that",
+                                   "Even this is too much electronic for me",
+                                   "Cool, but I\'m not quite ready to lose the guitars quite yet",
+                                   "Weird, but good! Maybe more electronic, but I still want vocals");
+
+    insert( questionAnswer );
+
+end
+
+rule  "Cool, but I\'m not quite ready to lose the guitars quite yet"
+when
+    questionAnswer : QuestionAnswer( ans.equals( "Cool, but I\'m not quite ready to lose the guitars quite yet") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.DARKSIDE_PSYCHIC);
+    insert( albumAnswer );
+
+end
+
+rule  "Weird, but good! Maybe more electronic, but I still want vocals"
+when
+    questionAnswer : QuestionAnswer( ans.equals( "Weird, but good! Maybe more electronic, but I still want vocals") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.THE_KNIFE_SILENT_SHOUT);
+    insert( albumAnswer );
+
+end
+
+
+rule "I actually like the drums and bleeps they had going on. More of that"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I actually like the drums and bleeps they had going on. More of that") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
+    insert( albumAnswer );
+
+end
+
+rule "Even this is too much electronic for me"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Even this is too much electronic for me") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.GODSPEED_YOU_BLACK_EMPEROR_LIFT_YOUR_SKINNY_FISTS_LIKE_ANTENNAS_TO_HEAVEN);
+    insert( albumAnswer );
+
+end
+
+rule "RADIOHEAD_OK_COMPUTER answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.RADIOHEAD_OK_COMPUTER )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Cool, but that\'s basically just rock music");
+
+    insert( questionAnswer );
+
+end
+
+rule "Cool, but that\'s basically just rock music"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Cool, but that\'s basically just rock music") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.RADIOHEAD_KID_A);
+    insert( albumAnswer );
+
+end
+
+rule "Too weird!"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Too weird!") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.DARKSIDE_PSYCHIC);
+    insert( albumAnswer );
+
+end
+
+rule "Take out the vocals. Focus it"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Take out the vocals. Focus it") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TOKIMONSTA_MIDNIGHT_MENU);
+    insert( albumAnswer );
+
+end
+
+rule "THE_KNIFE_SILENT_SHOUT answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.THE_KNIFE_SILENT_SHOUT )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+    								"Take out the vocals. Focus it",
+    								 "Too weird!");
+
+    insert( questionAnswer );
+
+end
+
+
+rule "DARKSIDE_PSYCHIC answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.DARKSIDE_PSYCHIC )
+then
+
+    QuestionAnswer questionAnswer = alertThreeButtonsAndGetTheAnswer(albumAnswer,
+    								"I like this. We can lose the guitars and stuff now. I\'m ready",
+    								"More of the same, but I think I\'m ready for electronic music now",
+    								"Where can I go from here?");
+
+    insert( questionAnswer );
+
+end
+
+rule "More of the same, but I think I\'m ready for electronic music now"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More of the same, but I think I\'m ready for electronic music now") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NICOLAS_JAAR_SPACE_IS_ONLY_NOISE);
+    insert( albumAnswer );
+
+end
+
+rule "I like this. We can lose the guitars and stuff now. I\'m ready"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like this. We can lose the guitars and stuff now. I\'m ready") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.JAMES_BLAKE_JAMES_BLAKE);
+    insert(answer);
+
+end
+
+rule "More of a vocal focus"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More of a vocal focus") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.JAMES_BLAKE_JAMES_BLAKE);
+    insert(answer);
+
+end
+
+rule "NICOLAS_JAAR_SPACE_IS_ONLY_NOISE answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.NICOLAS_JAAR_SPACE_IS_ONLY_NOISE )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+    								"More of a vocal focus",
+    								"This is much to busy and melodious for my tastes");
+
+    insert( questionAnswer );
+
+end
 
 declare enum Album
    APHEX_TWIN_DRUKQS("Aphex Twin - Drukqs", "src/main/resources/images/Aphex Twin - Drukqs.jpg"),
