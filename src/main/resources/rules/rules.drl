@@ -443,6 +443,16 @@ then
 
 end
 
+rule "These complex beats are awesome. Can they get wilder"
+when
+    questionAnswer : QuestionAnswer( ans.equals("These complex beats are awesome. Can they get wilder") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
+    insert( albumAnswer );
+
+end
+
 rule "More drums"
 when
     questionAnswer : QuestionAnswer( ans.equals("More drums") )
@@ -469,6 +479,9 @@ when
 then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
+    //QuestionAnswer qa = new QuestionAnswer();
+    //qa.setAns("ehh");
+    //insert(qa);
     insert( albumAnswer );
 
 end
@@ -479,6 +492,9 @@ when
 then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.APHEX_TWIN_SELECTED_AMBIENT_WORKS);
+    //QuestionAnswer qa = new QuestionAnswer();
+    //qa.setAns("ehh");
+    //insert(qa);
     insert( albumAnswer );
 
 end
@@ -704,7 +720,7 @@ when
 then
 
     QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
-                                   "I actually like the drums and bleeps they had going on. More of that",
+                                   "I actually liked the drums and bleeps they had going on. More of that",
                                    "Even this is too much electronic for me",
                                    "Cool, but I\'m not quite ready to lose the guitars quite yet",
                                    "Weird, but good! Maybe more electronic, but I still want vocals");
@@ -733,16 +749,6 @@ then
 
 end
 
-
-rule "I actually like the drums and bleeps they had going on. More of that"
-when
-    questionAnswer : QuestionAnswer( ans.equals("I actually like the drums and bleeps they had going on. More of that") )
-then
-
-    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
-    insert( albumAnswer );
-
-end
 
 rule "Even this is too much electronic for me"
 when
