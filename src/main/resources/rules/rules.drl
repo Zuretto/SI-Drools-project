@@ -37,10 +37,15 @@ rule "Initial rule"
 when
 
 then
+	AlbumAnswer albumAnswer = new AlbumAnswer();
+	albumAnswer.setAlbum(Album.ELECTRONIC_MUSIC);
+	QuestionAnswer questionAnswer = alertThreeButtonsAndGetTheAnswer(albumAnswer,
+                                    "I like rock music", 
+                                    "I like rap music",
+                                    "Let\'s start with something electronic");
 
-    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KANYE_WEST_808S_HEARTBREAK);
-    insert( albumAnswer );
-
+    insert( questionAnswer );
+	
 end
 
 rule "Album Answer yes"
@@ -83,7 +88,37 @@ then
      
 end
 
-rule "Kanye West - 808 & Heartbreak no answer"
+rule "I like rap music"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like rap music") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KANYE_WEST_808S_HEARTBREAK);
+    insert( albumAnswer );
+
+end
+
+rule "I like rock music"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like rock music") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.RADIOHEAD_OK_COMPUTER);
+    insert( albumAnswer );
+
+end
+
+rule "Let\'s start with something electronic"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Let\'s start with something electronic") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.DAFT_PUNK_DISCOVERY);
+    insert( albumAnswer );
+
+end
+
+rule "Kanye West - 808 & Heartbreak answer"
 when
     albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.KANYE_WEST_808S_HEARTBREAK )
 then
@@ -136,7 +171,7 @@ then
 
 end
 
-rule "DJ Shadow Endtroducing answer"
+rule "DJ_SHADOW_ENDTRODUCING answer"
 when
     albumAnswer: AlbumAnswer( ans.equals("No") && album == Album.DJ_SHADOW_ENDTRODUCING)
 then
@@ -837,7 +872,7 @@ then
 end
 
 declare enum Album
-   AELECTRONIC_MUSIC("AElectronic Music","src/main/resources/images/AElectronic Music.jpg"),
+   ELECTRONIC_MUSIC("Electronic Music","src/main/resources/images/Electronic Music.jpg"),
    APHEX_TWIN_DRUKQS("Aphex Twin - Drukqs", "src/main/resources/images/Aphex Twin - Drukqs.jpg"),
    APHEX_TWIN_SELECTED_AMBIENT_WORKS("Aphex Twin - Selected Ambient Works", "src/main/resources/images/Aphex Twin - Selected Ambient Works.jpg"),
    AUTECHRE_AMBER("Autechre - Amber", "src/main/resources/images/Autechre - Amber.jpg"),
