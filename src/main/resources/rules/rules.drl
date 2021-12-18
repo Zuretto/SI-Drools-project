@@ -1565,8 +1565,12 @@ function QuestionAnswer alertThreeButtonsAndGetTheAnswer(AlbumAnswer albumAnswer
     btn2.setText(btn2.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
     btn3.setText(btn3.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
 
+    btn1.setMinHeight(60);
+    btn2.setMinHeight(60);
+    btn3.setMinHeight(60);
+
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(1600);
+    stackPane.setMinWidth(750);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
@@ -1613,10 +1617,16 @@ function QuestionAnswer alertFourButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
     btn3.setText(btn3.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
     btn4.setText(btn4.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
 
+	btn1.setMinHeight(60);
+	btn2.setMinHeight(60);
+	btn3.setMinHeight(60);
+	btn4.setMinHeight(60);
+
+
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(1800);
+    stackPane.setMinWidth(750);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
