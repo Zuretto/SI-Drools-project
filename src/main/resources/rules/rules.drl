@@ -437,18 +437,28 @@ then
                                    "I can\'t wrap my head around these drums, but I like the rest of it. No drums",
                                    "That sounds dated. Something more recent?",
                                    "Let\'s get a steady beat on that",
-                                   "These complex beats are awesome. Can they get wilder");
+                                   "These complex beats are awesome. Can they get wilder?");
 
     insert( questionAnswer );
 
 end
 
-rule "These complex beats are awesome. Can they get wilder"
+rule "I can\'t wrap my head around these drums, but I like the rest of it. No drums"
 when
-    questionAnswer : QuestionAnswer( ans.equals("These complex beats are awesome. Can they get wilder") )
+    questionAnswer : QuestionAnswer( ans.equals("I can\'t wrap my head around these drums, but I like the rest of it. No drums") )
 then
 
-    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.AUTECHRE_AMBER);
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.KLAUS_SCHULZE_TIMEWIND);
+    insert( albumAnswer );
+
+end
+
+rule "These complex beats are awesome. Can they get wilder?"
+when
+    questionAnswer : QuestionAnswer( ans.equals("These complex beats are awesome. Can they get wilder?") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.MACHINEDRUM_ROOM);
     insert( albumAnswer );
 
 end
