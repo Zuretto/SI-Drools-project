@@ -840,7 +840,7 @@ then
 
     QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
                                    "This album is too busy for me.",
-                                   "Mix the two.");
+                                   "Mix it with \"Orbital - Brown Album\"");
     insert( questionAnswer );
 end
 
@@ -856,9 +856,19 @@ then
     insert( questionAnswer );
 end
 
-rule "Mix the two."
+rule "Mix it with \"Orbital - Brown Album\""
 when
-    questionAnswer : QuestionAnswer( ans.equals("Mix the two.") )
+    questionAnswer : QuestionAnswer( ans.equals("Mix it with \"Orbital - Brown Album\"") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.JON_HOPKINS_IMMUNITY);
+    insert( albumAnswer );
+
+end
+
+rule "Mix it with \"Brian Eno - Ambient 2 Plateaux Of Mirror\""
+when
+    questionAnswer : QuestionAnswer( ans.equals("Mix it with \"Brian Eno - Ambient 2 Plateaux Of Mirror\"") )
 then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.JON_HOPKINS_IMMUNITY);
@@ -923,7 +933,7 @@ then
 
     QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
                                    "I don't ever want to stop dancing.",
-                                   "Mix the two.",
+                                   "Mix it with \"Brian Eno - Ambient 2 Plateaux Of Mirror\"",
                                    "Less melody, more subtle",
                                    "I liked Halcyon + On + ON");
     questionAnswer.setPreviousAlbum(albumAnswer.getAlbum());
