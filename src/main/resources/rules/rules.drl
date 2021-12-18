@@ -22,6 +22,7 @@ import javafx.scene.Scene
 
 declare QuestionAnswer
     ans : String
+    previousAlbum: Album
 end
 
 
@@ -234,14 +235,72 @@ then
 
 end
 
+rule "Burial - Untrue"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.BURIAL_UNTRUE )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                    "Happier, Lighter, Focus on the beats, not the vocals",
+                                    "Drop the samples, keep the nice beats and dark amosphere.");
+
+    insert( questionAnswer );
+
+end
+
+rule "Happier, Lighter, Focus on the beats, not the vocals"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Happier, Lighter, Focus on the beats, not the vocals") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.TOKIMONSTA_MIDNIGHT_MENU);
+    insert( albumAnswer );
+
+end
+
+rule "Drop the samples, keep the nice beats and dark amosphere."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Drop the samples, keep the nice beats and dark amosphere.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.MASSIVE_ATTACK_MEZZANINE);
+    insert( albumAnswer );
+
+end
+
+rule "Massive Attack - Mezzanine"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.MASSIVE_ATTACK_MEZZANINE )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                    "I liked the feel of Burial a little better.");
+
+    insert( questionAnswer );
+
+end
+
+rule "I liked the feel of Burial a little better."
+when
+    questionAnswer : QuestionAnswer( ans.equals("I liked the feel of Burial a little better.") )
+then
+
+	AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.JAMES_BLAKE_JAMES_BLAKE);
+    insert(answer);
+
+end
+
 rule "NUJABES_METAPHORICAL_MUSIC answer"
 when
     albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.NUJABES_METAPHORICAL_MUSIC )
 then
 
-    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer, "I need more of these lush, organic sounds.",
-                                   "Stranger! Wonkier!");
-
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                    "I need more of these lush, organic sounds",
+                                    "Stranger! Wonkier!");
+    questionAnswer.setPreviousAlbum(albumAnswer.getAlbum());
     insert( questionAnswer );
 
 end
@@ -271,6 +330,137 @@ then
 
 end
 
+rule "Even stranger! Even wonkier!"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Even stranger! Even wonkier!") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.FLYING_LOTUS_COSMOGRAMMA);
+    insert( albumAnswer );
+
+end
+
+rule "That sounds dated. Something more recent?"
+when
+    questionAnswer : QuestionAnswer( ans.equals("That sounds dated. Something more recent?") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.FLYING_LOTUS_COSMOGRAMMA);
+    insert( albumAnswer );
+
+end
+
+rule "FLYING_LOTUS_COSMOGRAMMA answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.FLYING_LOTUS_COSMOGRAMMA )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "I want this, but in a jungle");
+
+    insert( questionAnswer );
+
+end
+
+rule "I want this, but in a jungle"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I want this, but in a jungle") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.LONE_GALAXY_GARDEN);
+    insert( albumAnswer );
+
+end
+
+rule "LONE_GALAXY_GARDEN answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.LONE_GALAXY_GARDEN )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "Rainforest music, but slightly less crazy",
+                                   "I loved the strange vocals that a few of the trachs had. And the drums.");
+
+    insert( questionAnswer );
+
+end
+
+rule "MACHINEDRUM_ROOM answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.MACHINEDRUM_ROOM )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Those drums. 10 times louder. 10 times crazier.");
+
+    insert( questionAnswer );
+
+end
+
+rule "Those drums. 10 times louder. 10 times crazier."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Those drums. 10 times louder. 10 times crazier.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.VENETIAN_SNARES_ROSSZ_CSILLAG_ALATT_SZULETETT);
+    insert( albumAnswer );
+
+end
+
+rule "VENETIAN_SNARES_ROSSZ_CSILLAG_ALATT_SZULETETT answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.VENETIAN_SNARES_ROSSZ_CSILLAG_ALATT_SZULETETT )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Calm down those drums. I like the orchestral samples though.");
+
+    insert( questionAnswer );
+
+end
+
+rule "Calm down those drums. I like the orchestral samples though."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Calm down those drums. I like the orchestral samples though.") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+        answer.setAns("Yes");
+        answer.setAlbum(Album.KASHIWA_DAISUKE_PROGRAM_MUSIC);
+        insert(answer);
+
+end
+
+rule "I loved the strange vocals that a few of the trachs had. And the drums."
+when
+    questionAnswer : QuestionAnswer( ans.equals("I loved the strange vocals that a few of the trachs had. And the drums.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.MACHINEDRUM_ROOM);
+    insert( albumAnswer );
+
+end
+
+rule "Rainforest music, but slightly less crazy"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Rainforest music, but slightly less crazy") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.THE_FUTURE_SOUND_OF_LONDON_LIFEFORMS);
+    insert( albumAnswer );
+
+end
+
+rule "More!"
+when
+    questionAnswer : QuestionAnswer( ans.equals("More!") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.THE_FUTURE_SOUND_OF_LONDON_LIFEFORMS);
+    insert( albumAnswer );
+
+end
+
 rule "Less melody, more subtle"
 when
     questionAnswer : QuestionAnswer( ans.equals("Less melody, more subtle") )
@@ -295,9 +485,10 @@ then
 
 end
 
-rule "I need more of these lush, organic sounds" //do Bonobo z kropka, do Nujabes bez
+rule "I need more of these lush, organic sounds - when from Bonobo - Black Sand"
 when
-    questionAnswer : QuestionAnswer( ans.equals("I need more of these lush, organic sounds") )
+    questionAnswer : QuestionAnswer( ans.equals("I need more of these lush, organic sounds"),
+                                     previousAlbum == Album.BONOBO_BLACK_SANDS)
 then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.NUJABES_METAPHORICAL_MUSIC);
@@ -305,9 +496,10 @@ then
 
 end
 
-rule "I need more of these lush, organic sounds."//do Bonobo z kropka, do Nujabes bez
+rule "I need more of these lush, organic sounds - when from Nujabes - Metaphorical Music"
 when
-    questionAnswer : QuestionAnswer( ans.equals("I need more of these lush, organic sounds.") )
+    questionAnswer : QuestionAnswer( ans.equals("I need more of these lush, organic sounds") &&
+                                     previousAlbum == Album.NUJABES_METAPHORICAL_MUSIC )
 then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BONOBO_BLACK_SANDS);
@@ -343,8 +535,30 @@ then
     QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
                                    "I need more of these lush, organic sounds",
                                    "Chill it out");
+    questionAnswer.setPreviousAlbum(albumAnswer.getAlbum());
+    insert( questionAnswer );
+
+end
+
+rule "THE_FUTURE_SOUND_OF_LONDON_LIFEFORMS answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.THE_FUTURE_SOUND_OF_LONDON_LIFEFORMS )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "I think I'm ready for some ambient now.");
 
     insert( questionAnswer );
+
+end
+
+rule "I think I'm ready for some ambient now."
+when
+    questionAnswer : QuestionAnswer( ans.equals("I think I'm ready for some ambient now.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.GLOBAL_COMMUNICATION_76_14);
+    insert( albumAnswer );
 
 end
 
@@ -540,6 +754,280 @@ then
 
     AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.ORB_THE_ORBS_ADVENTURES_BEYOND_THE_ULTRAWORLD);
     insert( albumAnswer );
+
+end
+
+rule "ORB_THE_ORBS_ADVENTURES_BEYOND_THE_ULTRAWORLD answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.ORB_THE_ORBS_ADVENTURES_BEYOND_THE_ULTRAWORLD )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Something a little bit less ambient maybe");
+    insert( questionAnswer );
+end
+
+rule "Something a little bit less ambient maybe"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Something a little bit less ambient maybe") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.THE_FUTURE_SOUND_OF_LONDON_ACCELERATOR);
+    insert( albumAnswer );
+
+end
+
+rule "THE_FUTURE_SOUND_OF_LONDON_ACCELERATOR answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.THE_FUTURE_SOUND_OF_LONDON_ACCELERATOR )
+then
+
+    QuestionAnswer questionAnswer = alertThreeButtonsAndGetTheAnswer(albumAnswer,
+                                   "More",
+                                   "I want to feel like I'm on drugs.",
+                                   "focus on fast, hard hitting drums.");
+
+    insert( questionAnswer );
+
+end
+
+rule "GLOBAL_COMMUNICATION_76_14 answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.GLOBAL_COMMUNICATION_76_14 )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "Even more ambient");
+
+    insert( questionAnswer );
+
+end
+
+rule "focus on fast, hard hitting drums."
+when
+    questionAnswer : QuestionAnswer( ans.equals("focus on fast, hard hitting drums.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.GOLDIE_TIMELESS);
+    insert( albumAnswer );
+
+end
+
+rule "GOLDIE_TIMELESS answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.GOLDIE_TIMELESS )
+then
+
+    QuestionAnswer questionAnswer = alertOneButtonAlertAndGetTheAnswer(albumAnswer,
+                                   "This, but I want to feel like I'm exploring a frozen wasteland.");
+    insert( questionAnswer );
+end
+
+rule "Even more ambient"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Even more ambient") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.BRIAN_ENO_AMBIENT_2_PLATEAUX_OF_MIRROR);
+    insert( albumAnswer );
+
+end
+
+rule "BRIAN_ENO_AMBIENT_2_PLATEAUX_OF_MIRROR answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.BRIAN_ENO_AMBIENT_2_PLATEAUX_OF_MIRROR )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "This album is too busy for me.",
+                                   "Mix the two.");
+    insert( questionAnswer );
+end
+
+rule "SHPONGLE_ARE_YOU_SHPONGLED answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.SHPONGLE_ARE_YOU_SHPONGLED )
+then
+
+    QuestionAnswer questionAnswer = alertThreeButtonsAndGetTheAnswer(albumAnswer,
+                                   "focus on fast, hard hitting drums.",
+                                   "I like this careless, fun music I can kind of dance to. Give me a big, essential, diverse collection of it.",
+                                   "This, but I want to feel like I'm exploring a frozen wasteland.");
+    insert( questionAnswer );
+end
+
+rule "Mix the two."
+when
+    questionAnswer : QuestionAnswer( ans.equals("Mix the two.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.JON_HOPKINS_IMMUNITY);
+    insert( albumAnswer );
+
+end
+
+rule "JON_HOPKINS_IMMUNITY answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.JON_HOPKINS_IMMUNITY )
+then
+
+    QuestionAnswer questionAnswer = alertTwoButtonsAndGetTheAnswer(albumAnswer,
+                                   "I liked the piano, but not the heavy parts",
+                                   "I liked the heavier bits, Collider for example.");
+    insert( questionAnswer );
+end
+
+
+
+rule "DAFT_PUNK_DISCOVERY answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.DAFT_PUNK_DISCOVERY )
+then
+
+    QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
+                                   "I don't ever want to stop dancing.",
+                                   "DIRTIER",
+                                   "I like this careless, fun music I can kind of dance to. Give me a big, essential, diverse collection of it.",
+                                   "Fun stuff, but could it get a little more... Tribal?");
+    questionAnswer.setPreviousAlbum(albumAnswer.getAlbum());
+    insert( questionAnswer );
+end
+
+rule "DIRTIER"
+when
+    questionAnswer : QuestionAnswer( ans.equals("DIRTIER") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.JUSTICE_CROSS);
+    insert(answer);
+
+end
+
+rule "I don't ever want to stop dancing - when from Daft Punk - Discovery"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I don't ever want to stop dancing."),
+                                     previousAlbum == Album.DAFT_PUNK_DISCOVERY)
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.ORBITAL_BROWN_ALBUM);
+    insert( albumAnswer );
+
+end
+
+rule "ORBITAL_BROWN_ALBUM answer"
+when
+    albumAnswer  : AlbumAnswer( ans.equals("No") && album == Album.ORBITAL_BROWN_ALBUM )
+then
+
+    QuestionAnswer questionAnswer = alertFourButtonsAndGetTheAnswer(albumAnswer,
+                                   "I don't ever want to stop dancing.",
+                                   "Mix the two.",
+                                   "Less melody, more subtle",
+                                   "I liked Halcyon + On + ON");
+    questionAnswer.setPreviousAlbum(albumAnswer.getAlbum());
+    insert( questionAnswer );
+
+end
+
+rule "I liked Halcyon + On + ON"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I liked Halcyon + On + ON") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.GLOBAL_COMMUNICATION_76_14);
+    insert( albumAnswer );
+
+end
+
+rule "I don't ever want to stop dancing. - when from Orbital - Brown Album"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I don't ever want to stop dancing."),
+                                     previousAlbum == Album.ORBITAL_BROWN_ALBUM)
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.DAFT_PUNK_DISCOVERY);
+    insert( albumAnswer );
+
+end
+
+rule "Fun stuff, but could it get a little more... Tribal?"
+when
+    questionAnswer : QuestionAnswer( ans.equals("Fun stuff, but could it get a little more... Tribal?") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.SHPONGLE_ARE_YOU_SHPONGLED);
+    insert( albumAnswer );
+
+end
+
+
+rule "I want to feel like I'm on drugs."
+when
+    questionAnswer : QuestionAnswer( ans.equals("I want to feel like I'm on drugs.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.SHPONGLE_ARE_YOU_SHPONGLED);
+    insert( albumAnswer );
+
+end
+
+rule "I like this careless, fun music I can kind of dance to. Give me a big, essential, diverse collection of it."
+when
+    questionAnswer : QuestionAnswer( ans.equals("I like this careless, fun music I can kind of dance to. Give me a big, essential, diverse collection of it.") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.SASHA_JOHN_FIGWEED_NORTHEN_EXPOSURE);
+    insert(answer);
+
+end
+
+rule "This, but I want to feel like I'm exploring a frozen wasteland."
+when
+    questionAnswer : QuestionAnswer( ans.equals("This, but I want to feel like I'm exploring a frozen wasteland.") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.SASHA_JOHN_FIGWEED_NORTHEN_EXPOSURE);
+    insert(answer);
+
+end
+
+rule "I liked the heavier bits, Collider for example."
+when
+    questionAnswer : QuestionAnswer( ans.equals("I liked the heavier bits, Collider for example.") )
+then
+
+    AlbumAnswer albumAnswer = showAlbumAlertAndGetAnswer(Album.DAFT_PUNK_DISCOVERY);
+    insert( albumAnswer );
+
+end
+
+rule "I liked the piano, but not the heavy parts"
+when
+    questionAnswer : QuestionAnswer( ans.equals("I liked the piano, but not the heavy parts") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.HELIOS_EINGYA);
+    insert(answer);
+
+end
+
+rule "This album is too busy for me."
+when
+    questionAnswer : QuestionAnswer( ans.equals("This album is too busy for me.") )
+then
+
+    AlbumAnswer answer = new AlbumAnswer();
+    answer.setAns("Yes");
+    answer.setAlbum(Album.BRIAN_ENO_AMBIENT_1_MUSIC_FOR_AIRPORTS);
+    insert(answer);
 
 end
 
@@ -898,6 +1386,7 @@ declare enum Album
    DJ_SHADOW_ENDTRODUCING("DJ Shadow - Endtroducing", "src/main/resources/images/DJ Shadow - Endtroducing......jpg"),
    DAFT_PUNK_DISCOVERY("Daft Punk - Discovery", "src/main/resources/images/Daft Punk - Discovery.jpg"),
    DARKSIDE_PSYCHIC("Darkside - Psychic", "src/main/resources/images/Darkside - Psychic.jpg"),
+   FLYING_LOTUS_COSMOGRAMMA("Flying Lotus - Cosmogramma", "src/main/resources/images/Flying Lotus - Cosmogramma.jpg"),
    FUCK_BUTTONS_TAROT_SPORT("Fuck Buttons - Tarot Sport", "src/main/resources/images/Fuck Buttons - Tarot Sport.jpg"),
    GIRL_TALK_FEED_THE_ANIMALS("Girl Talk - Feed The Animals", "src/main/resources/images/Girl Talk - Feed The Animals.jpg"),
    GLOBAL_COMMUNICATION_76_14("Global Communication - 76 14", "src/main/resources/images/Global Communication - 76 14.jpg"),
