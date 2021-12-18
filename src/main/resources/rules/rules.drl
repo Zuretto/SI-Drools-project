@@ -1439,7 +1439,6 @@ function AlbumAnswer showAlbumAlertAndGetAnswer(Album album) {
     FileInputStream input = new FileInputStream(album.getPathName());
     Image image = new Image(input);
     ImageView imageView = new ImageView(image);
-
     Alert alert = new Alert(Alert.AlertType.NONE, "",
                             ButtonType.YES, ButtonType.NO);
 
@@ -1570,7 +1569,7 @@ function QuestionAnswer alertThreeButtonsAndGetTheAnswer(AlbumAnswer albumAnswer
     btn3.setMinHeight(60);
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(750);
+    stackPane.setMinWidth(1000);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
@@ -1626,7 +1625,7 @@ function QuestionAnswer alertFourButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
-    stackPane.setMinWidth(750);
+    stackPane.setMinWidth(1000);
     stackPane.setAlignment(Pos.CENTER);
     grid.add(stackPane, 0,0);
 
