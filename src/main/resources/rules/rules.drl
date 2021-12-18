@@ -1557,6 +1557,14 @@ function QuestionAnswer alertThreeButtonsAndGetTheAnswer(AlbumAnswer albumAnswer
 	DialogPane dialogPane = alert.getDialogPane();
     GridPane grid = new GridPane();
 
+	Button btn1 = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(0));
+	Button btn2 = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(1));
+	Button btn3 = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(2));
+
+    btn1.setText(btn1.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
+    btn2.setText(btn2.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
+    btn3.setText(btn3.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
+
     StackPane stackPane = new StackPane(imageView);
     stackPane.setMinWidth(1600);
     stackPane.setAlignment(Pos.CENTER);
@@ -1594,6 +1602,17 @@ function QuestionAnswer alertFourButtonsAndGetTheAnswer(AlbumAnswer albumAnswer,
     ImageView imageView = loadImageView(albumAnswer.getAlbum().getPathName());
     
 	DialogPane dialogPane = alert.getDialogPane();
+
+	Button btn1 = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(0));
+	Button btn2 = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(1));
+	Button btn3 = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(2));
+	Button btn4 = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(3));
+
+    btn1.setText(btn1.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
+    btn2.setText(btn2.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
+    btn3.setText(btn3.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
+    btn4.setText(btn4.getText().replaceAll("([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ )", "$1\n"));
+
     GridPane grid = new GridPane();
 
     StackPane stackPane = new StackPane(imageView);
