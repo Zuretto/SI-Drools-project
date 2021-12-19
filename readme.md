@@ -8,6 +8,7 @@ Mikołaj Żurawski  145422
 Projekt został stworzony i przetestowany na Javie w wersji 8.
 
 Używany moduł graficzny, to JavaFX. 
+
 Instalacja JavaFX w Eclipse Oxygen:
 1. Help -> Install New Software...
 2. W liście "Work with" wybieramy opcję "Oxygen - http://download.eclipse.org/releases/oxygen"
